@@ -18,3 +18,4 @@ z = axes['z']
 print x
 print y
 print z
+#https://www.anstack.com/blog/2016/07/05/accelerometer-intro.html
