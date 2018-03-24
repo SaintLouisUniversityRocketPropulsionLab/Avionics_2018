@@ -19,6 +19,8 @@ pascals = sensor.read_pressure()
 hectopascals = pascals / 100
 humidity = sensor.read_humidity()
 
+
+
 print 'Temp      = {0:0.3f} deg C'.format(degrees)
 print 'Pressure  = {0:0.2f} hPa'.format(hectopascals)
 print 'Humidity  = {0:0.2f} %'.format(humidity)
@@ -28,22 +30,24 @@ print "   y = %.3fG" % ( axes['y'] )
 print "   z = %.3fG" % ( axes['z'] )
 
 
-while True:
-    try:
-        report = session.next()
-        if report['class'] == 'TPV':
-            if hasattr(report, 'lon'):
-                print report.lon
-            if hasattr(report, 'lat'):
-                print report.lat
-    except KeyError:
-        pass
-    except KeyboardInterrupt:
-        quit()
-    except StopIteration:
-        session = None
-        print "GPSD has terminated"
-
+report = session.next()
+#print report
+if report['class'] == 'TPV':
+    if hasattr(report, 'time'):
+        print report.time
+    if hasattr(report, 'lon'):
+        print "longitude:"+str(report.lon)
+    if hasattr(report, 'lat'):
+        print "latitude:"+str(report.lat)
+    if hasattr(report, 'alt'):
+        print "altitude:"+st(report.alt)
+  except KeyError:
+    pass
+  except KeyboardInterrupt:
+    quit()
+  except StopIteration:
+    session = None
+    print "GPSD has terminated"
 
 
 
