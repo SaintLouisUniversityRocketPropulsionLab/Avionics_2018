@@ -1,23 +1,24 @@
 import gps
-
-# Listen on port 2947 (gpsd) of localhost
 session = gps.gps("localhost", "2947")
 session.stream(gps.WATCH_ENABLE | gps.WATCH_NEWSTYLE)
 
 while True:
   try:
     report = session.next()
-# Wait for a 'TPV' report and display the current time
-# To see all report data, uncomment the line below
-# print report
+    #print report
     if report['class'] == 'TPV':
-      if hasattr(report, 'time'):
-        print report.time
+    if hasattr(report, 'time'):
+      print report.time
+    if hasattr(report, 'lon'):
+      print "longitude:"+str(report.lon)
+    if hasattr(report, 'lat'):
+      print "latitude:"+str(report.lat)
+    if hasattr(report, 'alt'):
+      print "altitude:"+st(report.alt)
   except KeyError:
-pass
+    pass
   except KeyboardInterrupt:
-quit()
+    quit()
   except StopIteration:
-session = None
-print "GPSD has terminated"
-#https://cdn-learn.adafruit.com/downloads/pdf/adafruit-ultimate-gps-on-the-raspberry-pi.pdf
+    session = None
+    print "GPSD has terminated"
