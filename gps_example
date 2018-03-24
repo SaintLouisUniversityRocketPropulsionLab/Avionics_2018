@@ -7,14 +7,14 @@ while True:
     report = session.next()
     #print report
     if report['class'] == 'TPV':
-    if hasattr(report, 'time'):
-      print report.time
-    if hasattr(report, 'lon'):
-      print "longitude:"+str(report.lon)
-    if hasattr(report, 'lat'):
-      print "latitude:"+str(report.lat)
-    if hasattr(report, 'alt'):
-      print "altitude:"+st(report.alt)
+      if hasattr(report, 'time'):
+        print report.time
+      if hasattr(report, 'lon'):
+        print "longitude:"+str(report.lon)
+      if hasattr(report, 'lat'):
+        print "latitude:"+str(report.lat)
+      if hasattr(report, 'alt'):
+        print "altitude:"+st(report.alt)
   except KeyError:
     pass
   except KeyboardInterrupt:
