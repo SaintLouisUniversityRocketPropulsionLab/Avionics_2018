@@ -1,0 +1,16 @@
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just chagne the execution
+# bits.
+#
+# By default this script does nothing. Since the av_launch.sh runs continuously
+# the amepersand (&) must be after the file name to ensure the scirpt reaches exit 0
+
+sudo /home/pi/Avionics_2018/av_launch.sh &
+exit 0
